@@ -21,9 +21,10 @@ public class ApplicationServer {
             ApplicationServer.this.stop();
             System.err.println("*** server shut down");
         }));
+        blockUntilShutdown();
     }
 
-    public void stop() {
+    private void stop() {
         server.shutdown();
     }
 
