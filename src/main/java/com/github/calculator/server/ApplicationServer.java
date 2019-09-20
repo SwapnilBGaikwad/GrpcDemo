@@ -18,18 +18,9 @@ public class ApplicationServer {
         logger.info("Server started, listening on " + PORT);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.err.println("*** shutting down gRPC server since JVM is shutting down");
-            ApplicationServer.this.stop();
+            server.shutdown();
             System.err.println("*** server shut down");
         }));
-        blockUntilShutdown();
-    }
-
-    private void stop() {
-        server.shutdown();
-    }
-
-    private void blockUntilShutdown() throws InterruptedException {
         server.awaitTermination();
     }
-
 }
